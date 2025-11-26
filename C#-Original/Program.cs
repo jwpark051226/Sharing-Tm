@@ -54,15 +54,7 @@ namespace SharingTm
         // 미구현
         private static void UserMenu()
         {
-            bool userQuit = false;
-            while (!userQuit)
-            {
-                Console.WriteLine("1. 로그인");
-                Console.WriteLine("2. 회원가입");
-                Console.WriteLine("0. 메뉴 선택으로 돌아가기\n");
-                // (입력 받는 부분이 없어서 바로 탈출하도록 되어 있음)
-                userQuit = true; 
-            }            
+            
         }
         
         // 관리자 전용 메뉴 진입
