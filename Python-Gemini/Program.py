@@ -475,8 +475,6 @@ def admin_menu():
 def user_menu():
     user_quit = False
     while not user_quit:
-        print("1. 로그인")
-        print("2. 회원가입")
         print("0. 메뉴 선택으로 돌아가기\n")
         try:
             inp = input() 
