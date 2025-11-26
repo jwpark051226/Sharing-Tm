@@ -27,7 +27,11 @@ namespace SharingTm
                     Console.WriteLine("0. 종료\n");
                     Console.Write("입력 : ");
 
-                    int mainMenuChoice = int.Parse(Console.ReadLine());
+                    if (!int.TryParse(Console.ReadLine(), out int mainMenuChoice))
+                    {
+                        mainMenuChoice = -1; // 숫자가 아닐 경우 default로 이동
+                    }
+
                     switch (mainMenuChoice)
                     {
                         case 1:
@@ -56,6 +60,7 @@ namespace SharingTm
                 Console.WriteLine("1. 로그인");
                 Console.WriteLine("2. 회원가입");
                 Console.WriteLine("0. 메뉴 선택으로 돌아가기\n");
+                // (입력 받는 부분이 없어서 바로 탈출하도록 되어 있음)
                 userQuit = true; 
             }            
         }
@@ -74,7 +79,11 @@ namespace SharingTm
                 Console.WriteLine("0. 메뉴 선택으로 돌아가기\n");
                 Console.Write("입력 : ");
 
-                int adminMenuChoice = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int adminMenuChoice))
+                {
+                    adminMenuChoice = -1;
+                }
+
                 switch (adminMenuChoice)
                 {
                     case 1:
@@ -103,8 +112,12 @@ namespace SharingTm
                 Console.WriteLine("3. 사용자 삭제");
                 Console.WriteLine("0. 상위 메뉴로 돌아가기\n");
                 Console.Write("입력 : ");
+                
+                if (!int.TryParse(Console.ReadLine(), out int menuChoice))
+                {
+                    menuChoice = -1;
+                }
 
-                int menuChoice = int.Parse(Console.ReadLine());
                 switch (menuChoice)
                 {
                     case 1:
@@ -137,7 +150,11 @@ namespace SharingTm
                 Console.WriteLine("0. 상위 메뉴로 돌아가기\n");
                 Console.Write("입력 : ");
 
-                int menuChoice = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int menuChoice))
+                {
+                    menuChoice = -1;
+                }
+
                 switch (menuChoice)
                 {
                     case 1:
@@ -161,7 +178,6 @@ namespace SharingTm
 
         private static void AdminViewUser()
         {
-            // DB에서 전체 유저 목록 가져오기
             List<User> userListForView = DatabaseManager.GetUsers();
             if (userListForView.Count > 0)
             {
@@ -179,17 +195,13 @@ namespace SharingTm
             {
                 List<User> userList = DatabaseManager.GetUsers();
                 
-                // 중복된 이름이 있는지 확인하여 처리하는 로직
-                if (userList.Any(
-                    user => user.username.Equals(newUserName)))
+                if (userList.Any(user => user.username.Equals(newUserName)))
                 {
                     int i = 1;
                     bool flag = false;
                     while (!flag)
                     {
-                        // 중복 시 이름 뒤에 (n)을 붙여 유니크한 이름 생성
-                        if (userList.Any(
-                             user => user.username.Equals($"{newUserName}({i})")))
+                        if (userList.Any(user => user.username.Equals($"{newUserName}({i})")))
                             i++;
                         else
                         {
@@ -199,7 +211,6 @@ namespace SharingTm
                     }
                 }
                 
-                // 최종 결정된 이름으로 DB에 추가
                 if (DatabaseManager.AddNewUser(newUserName))
                     Console.WriteLine($"{newUserName} 사용자가 추가되었습니다.");
                 else Console.WriteLine("사용자 추가에 실패했습니다.");
@@ -219,7 +230,11 @@ namespace SharingTm
                 Console.WriteLine("0. 상위 메뉴로 돌아가기");
                 Console.Write("입력 : ");
 
-                int howToSearchUser = int.Parse(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int howToSearchUser))
+                {
+                    howToSearchUser = -1;
+                }
+
                 switch (howToSearchUser)
                 {
                     case 1:
@@ -250,7 +265,13 @@ namespace SharingTm
                 while (!selectedUserIdExists)
                 {
                     Console.Write("제거할 유저의 ID를 입력해주세요 (0으로 돌아가기) : ");
-                    int delUserID = int.Parse(Console.ReadLine());
+                    
+                    // 실패 시 -1을 넣어 ID없음 로직으로 빠지게 함 (0은 뒤로가기이므로 겹치지 않게)
+                    if (!int.TryParse(Console.ReadLine(), out int delUserID))
+                    {
+                        delUserID = -1; 
+                    }
+
                     if (delUserID == 0)
                         selectedUserIdExists = true;
                     else if (userList.Any(user => user.userid == delUserID))
@@ -297,7 +318,7 @@ namespace SharingTm
                             else
                                 Console.WriteLine("사용자를 제거할 수 없었습니다.");
                         }
-                        else if (confirmDel.ToLower().Equals("y")) // (참고: 로직상 n에 대한 처리가 누락되어 있거나 중복 조건으로 보임)
+                        else if (confirmDel.ToLower().Equals("n")) 
                         {
                             hasConfirmed = true;
                         }
@@ -314,7 +335,12 @@ namespace SharingTm
                     while (!selectedUserIdExists_1)
                     {
                         Console.Write("제거할 유저의 ID를 입력해주세요.(0으로 돌아가기) : ");
-                        int delUserID = int.Parse(Console.ReadLine());
+                        
+                        if (!int.TryParse(Console.ReadLine(), out int delUserID))
+                        {
+                            delUserID = -1;
+                        }
+
                         if (delUserID == 0)
                             selectedUserIdExists_1 = true;
                         else if (userList.Any(user => user.userid == delUserID))
@@ -332,11 +358,10 @@ namespace SharingTm
             }
         }
 
-        // 유저 리스트 출력 포맷팅
         private static void PrintUserList(List<User> userList)
         {
             Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine(" ID    이름          잔액          이용권 유무");
+            Console.WriteLine(" ID    이름           잔액           이용권 유무");
             Console.WriteLine("-----------------------------------------------------");
             foreach (User user in userList)
             {
@@ -393,7 +418,12 @@ namespace SharingTm
                 Console.WriteLine("3. 대여소 주소로 검색");
                 Console.WriteLine("0. 상위 메뉴로 돌아가기\n");
                 Console.Write("입력 : ");
-                int howToSelectStation = int.Parse(Console.ReadLine());
+                
+                if (!int.TryParse(Console.ReadLine(), out int howToSelectStation))
+                {
+                    howToSelectStation = -1;
+                }
+
                 switch (howToSelectStation)
                 {
                     case 1:
@@ -425,10 +455,14 @@ namespace SharingTm
                 while (!selectedStationIDExists)
                 {
                     Console.Write("제거할 대여소의 ID를 입력해주세요.(0으로 돌아가기) : ");
-                    int delStationID = int.Parse(Console.ReadLine());
+                    
+                    if (!int.TryParse(Console.ReadLine(), out int delStationID))
+                    {
+                        delStationID = -1;
+                    }
+
                     if (delStationID == 0)
                         selectedStationIDExists = true;
-                    // 입력한 ID가 리스트에 존재하는지 검증
                     else if (stationList.Any(station => station.stationID == delStationID))
                     {
                         selectedStationIDExists = true;
@@ -456,7 +490,6 @@ namespace SharingTm
             {
                 PrintStationList(stationList);
                 
-                // 검색된 대여소가 1개일 때 처리
                 if (stationList.Count == 1)
                 {
                     bool hasConfirmed = false;
@@ -472,7 +505,7 @@ namespace SharingTm
                             else
                                 Console.WriteLine("대여소를 제거할 수 없었습니다.");
                         }
-                        else if (confirmDel.ToLower().Equals("y"))
+                        else if (confirmDel.ToLower().Equals("n"))
                         {
                             hasConfirmed = true;
                         }
@@ -482,14 +515,18 @@ namespace SharingTm
                         }
                     }
                 }
-                // 검색된 대여소가 여러 개일 때 ID로 선택
                 else
                 {
                     bool selectedStationIDExists = false;
                     while (!selectedStationIDExists)
                     {
-                        Console.Write("제거할 유저의 ID를 입력해주세요.(0으로 돌아가기) : ");
-                        int delStationID = int.Parse(Console.ReadLine());
+                        Console.Write("제거할 대여소의 ID를 입력해주세요.(0으로 돌아가기) : ");
+                        
+                        if (!int.TryParse(Console.ReadLine(), out int delStationID))
+                        {
+                            delStationID = -1;
+                        }
+
                         if (delStationID == 0)
                             selectedStationIDExists = true;
                         else if (stationList.Any(station => station.stationID == delStationID))
@@ -509,7 +546,7 @@ namespace SharingTm
 
         private static void DelStationWithAddress()
         {
-            Console.Write("검색할 대여소의 이름을 입력해주세요 : ");
+            Console.Write("검색할 대여소의 주소를 입력해주세요 : ");
             string searchStationAddress = Console.ReadLine();
             List<Station> stationList = DatabaseManager.GetStationsByAddress(searchStationAddress);
             if (stationList.Count == 0)
@@ -549,7 +586,12 @@ namespace SharingTm
                     while (!selectedStationIDExists)
                     {
                         Console.Write("제거할 대여소의 ID를 입력해주세요.(0으로 돌아가기) : ");
-                        int delStationID = int.Parse(Console.ReadLine());
+                        
+                        if (!int.TryParse(Console.ReadLine(), out int delStationID))
+                        {
+                            delStationID = -1;
+                        }
+
                         if (delStationID == 0)
                             selectedStationIDExists = true;
                         else if (stationList.Any(station => station.stationID == delStationID))
@@ -567,7 +609,6 @@ namespace SharingTm
             }
         }
 
-        // 대여소 리스트 출력 포맷팅
         private static void PrintStationList(List<Station> StationList)
         {
             Console.WriteLine("\n------------------------------------------------------------------------------------------");
