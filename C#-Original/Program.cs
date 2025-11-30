@@ -116,6 +116,9 @@ namespace SharingTm
                     case 3:
                         AdminTimeMachineManage();
                         break;
+                    case 4:
+                        AdminViewRental();
+                        break;
                     case 5:
                         AdminViewTicket();
                         break;
@@ -191,7 +194,11 @@ namespace SharingTm
                     }
 
                     if (loginUserID == 0)
+                    {
                         selectedUserIdExists = true;
+                        continue;
+                    }
+                        
 
                     User targetUser = userList.FirstOrDefault(user => user.userID == loginUserID);
                     if (targetUser != null)
@@ -269,7 +276,7 @@ namespace SharingTm
                             selectedUser = targetUser;
                         }
                         else
-                            Console.WriteLine("해당하는 ID의 타임머신이 없습니다.");
+                            Console.WriteLine("해당하는 ID의 사용자가 없습니다.");
                     }
                 }
             }
@@ -281,14 +288,20 @@ namespace SharingTm
             bool userMenuQuit = false;
             while (!userMenuQuit)
             {
+                string currentEraPoint;
+                if (user.currentEraPoint.Equals("CurrentTime"))
+                    currentEraPoint = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                else
+                    currentEraPoint = user.currentEraPoint;
+
                 // 사용자의 이름, 잔액, 이용권 유무, 현재 대여중 여부의 인적사항 출력
-                Console.WriteLine("\n---------사용자 정보---------");
+                Console.WriteLine("\n-------------사용자 정보-------------");
                 Console.WriteLine($"이름 : {user.userName}");
                 Console.WriteLine($"소지금 : {user.balance}원");
                 Console.WriteLine($"이용권 유무 : {(user.hasTicket ? "Y" : "N")}");
                 Console.WriteLine($"현재 타임머신 대여중 : {(user.isRenting ? "Y" : "N")}");
-                // TODO 현재 시간대 넣는것도 생각해보기?
-                Console.WriteLine("-----------------------------");
+                Console.WriteLine($"현재 체류 시간대 : {currentEraPoint}");
+                Console.WriteLine("-------------------------------------");
 
                 Console.WriteLine("\n1. 대여/반납");
                 Console.WriteLine("2. 이용권 구매");
@@ -359,7 +372,7 @@ namespace SharingTm
         private static bool UserRentTimeMachine(User user)
         {
             bool result = false;
-            Station station = RentSelectStation();
+            Station station = RentSelectStationMenu();
             if (station == null) return false;
             TimeMachine timeMachine = RentSelectTimeMachine(station);
             if (timeMachine == null) return false;
@@ -375,7 +388,38 @@ namespace SharingTm
             return result;
         }
 
-        // TODO 주소, 이름으로도 대여소 검색할 수 있게 하기
+        private static Station RentSelectStationMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\n1. 대여소 직접 선택");
+                Console.WriteLine("2. 대여소 이름으로 선택");
+                Console.WriteLine("3. 대여소 주소로 선택");
+                Console.WriteLine("0. 상위 메뉴로 돌아가기");
+                Console.Write("입력 : ");
+
+                if (!int.TryParse(Console.ReadLine(), out int howToSearchStation))
+                {
+                    howToSearchStation = -1;
+                }
+
+                switch (howToSearchStation)
+                {
+                    case 1:
+                        return RentSelectStation();
+                    case 2:
+                        return RentSelectStationWithName();
+                    case 3:
+                        return RentSelectStationWithAddress();
+                    case 0:
+                        return null;
+                    default:
+                        Console.WriteLine("0부터 3 사이의 수를 입력해주세요.");
+                        break;
+                }
+            }
+        }
+
         private static Station RentSelectStation()
         {
             Station result = null;
@@ -410,6 +454,134 @@ namespace SharingTm
             }
             else
                 Console.WriteLine("등록된 대여소가 없습니다.");
+            return result;
+        }
+
+        private static Station RentSelectStationWithName()
+        {
+            Station result = null;
+            Console.Write("검색할 대여소의 이름을 입력해주세요 : ");
+            string searchStationName = Console.ReadLine();
+            List<Station> stationList = DatabaseManager.GetStationsByName(searchStationName);
+            if (stationList.Count == 0)
+                Console.WriteLine("해당 대여소를 찾을 수 없습니다.");
+            else
+            {
+                PrintStationList(stationList);
+
+                if (stationList.Count == 1)
+                {
+                    bool hasConfirmed = false;
+                    while (!hasConfirmed)
+                    {
+                        Console.Write("해당 대여소를 선택하시겠습니까?(y/n) : ");
+                        string confirmDel = Console.ReadLine();
+                        if (confirmDel.ToLower().Equals("y"))
+                        {
+                            hasConfirmed = true;
+                            result = stationList[0];
+                        }
+                        else if (confirmDel.ToLower().Equals("n"))
+                        {
+                            hasConfirmed = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("y 혹은 n을 입력해주세요.");
+                        }
+                    }
+                }
+                else
+                {
+                    bool selectedStationIDExists = false;
+                    while (!selectedStationIDExists)
+                    {
+                        Console.Write("대여소의 ID를 입력해주세요.(0으로 돌아가기) : ");
+
+                        if (!int.TryParse(Console.ReadLine(), out int delStationID))
+                        {
+                            delStationID = -1;
+                        }
+
+                        if (delStationID == 0)
+                            selectedStationIDExists = true;
+                        else
+                        {
+                            Station targetStation = stationList.FirstOrDefault(station => station.stationID == delStationID);
+                            if (targetStation != null)
+                            {
+                                result = targetStation;
+                            }
+                            else
+                                Console.WriteLine("해당하는 ID의 대여소가 없습니다.");
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        private static Station RentSelectStationWithAddress()
+        {
+            Station result = null;
+            Console.Write("검색할 대여소의 주소를 입력해주세요 : ");
+            string searchStationAddress = Console.ReadLine();
+            List<Station> stationList = DatabaseManager.GetStationsByAddress(searchStationAddress);
+            if (stationList.Count == 0)
+                Console.WriteLine("해당 대여소를 찾을 수 없습니다.");
+            else
+            {
+                PrintStationList(stationList);
+
+                if (stationList.Count == 1)
+                {
+                    bool hasConfirmed = false;
+                    while (!hasConfirmed)
+                    {
+                        Console.Write("해당 대여소를 선택하시겠습니까?(y/n) : ");
+                        string confirmDel = Console.ReadLine();
+                        if (confirmDel.ToLower().Equals("y"))
+                        {
+                            hasConfirmed = true;
+                            result = stationList[0];
+                        }
+                        else if (confirmDel.ToLower().Equals("n"))
+                        {
+                            hasConfirmed = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("y 혹은 n을 입력해주세요.");
+                        }
+                    }
+                }
+                else
+                {
+                    bool selectedStationIDExists = false;
+                    while (!selectedStationIDExists)
+                    {
+                        Console.Write("대여소의 ID를 입력해주세요.(0으로 돌아가기) : ");
+
+                        if (!int.TryParse(Console.ReadLine(), out int delStationID))
+                        {
+                            delStationID = -1;
+                        }
+
+                        if (delStationID == 0)
+                            selectedStationIDExists = true;
+                        else
+                        {
+                            Station targetStation = stationList.FirstOrDefault(station => station.stationID == delStationID);
+                            if (targetStation != null)
+                            {
+                                result = targetStation;
+                            }
+                            else
+                                Console.WriteLine("해당하는 ID의 대여소가 없습니다.");
+                        }
+                    }
+                }
+            }
             return result;
         }
 
@@ -501,7 +673,7 @@ namespace SharingTm
         {
             while (true)
             {
-                Console.WriteLine("\n시간대 입력 예) 2025-05-21, BC 2333-10-03)");
+                Console.WriteLine("\n시간대 입력 예) 2025-05-21, BC 0333-10-03)");
                 Console.Write("이동할 시간대를 입력해주세요.(0으로 돌아가기)  : ");
                 string input = Console.ReadLine().Trim();
 
@@ -539,6 +711,8 @@ namespace SharingTm
                         return "BC " + datePart;
                     }
                 }
+
+                Console.WriteLine("시간 형식이 잘못됐습니다.");
             }
         }
 
@@ -677,6 +851,10 @@ namespace SharingTm
 
                 switch (viewInput)
                 {
+                    case 1:
+                        List<Rental> rentalList = DatabaseManager.GetRentalHistoryWithUserID(user.userID);
+                        PrintRentalHistory(rentalList);
+                        break;
                     case 2:
                         List<Ticket> ticketList = DatabaseManager.GetTicketsWithUserID(user.userID);
                         PrintTicketList(ticketList);
@@ -701,6 +879,7 @@ namespace SharingTm
                 targetUser.balance = refreshedUser.balance;
                 targetUser.hasTicket = refreshedUser.hasTicket;
                 targetUser.isRenting = refreshedUser.isRenting;
+                targetUser.currentEraPoint = refreshedUser.currentEraPoint;
             }
         }
 
@@ -891,7 +1070,6 @@ namespace SharingTm
             }
         }
 
-        // TODO 대여중인 유저 삭제 방지
         // 목록을 보고 ID를 직접 입력하여 삭제
         private static void DelUserWithSelect()
         {
@@ -913,23 +1091,27 @@ namespace SharingTm
 
                     if (delUserID == 0)
                         selectedUserIdExists = true;
-                    else if (userList.Any(user => user.userID == delUserID))
+                    User targetUser = userList.FirstOrDefault(user => user.userID == delUserID);
+                    if (targetUser != null)
                     {
-                        selectedUserIdExists = true;
-                        if (DatabaseManager.DeleteUser(delUserID))
-                            Console.WriteLine("사용자를 성공적으로 제거했습니다.");
+                        if (targetUser.isRenting)
+                            Console.WriteLine("타임머신을 대여중인 사용자는 삭제할 수 없습니다.");
                         else
-                            Console.WriteLine("사용자를 제거할 수 없었습니다.");
-                    }
-                    else
-                        Console.WriteLine("해당하는 ID의 사용자가 없습니다.");
+                        {
+                            selectedUserIdExists = true;
+                            if (DatabaseManager.DeleteUser(delUserID))
+                                Console.WriteLine("사용자를 성공적으로 제거했습니다.");
+                            else
+                                Console.WriteLine("사용자를 제거할 수 없었습니다.");
+                        }
+                    }      
                 }
             }
             else
                 Console.WriteLine("등록된 사용자가 없습니다.");
         }
 
-        // 이름으로 검색하여 삭제 (동명이인 처리 포함)
+        // 이름으로 검색하여 삭제
         private static void DelUserWithName()
         {
             Console.Write("검색할 사용자의 이름을 입력해주세요 : ");
@@ -952,10 +1134,15 @@ namespace SharingTm
                         if (confirmDel.ToLower().Equals("y"))
                         {
                             hasConfirmed = true;
-                            if (DatabaseManager.DeleteUser(userList[0].userID))
-                                Console.WriteLine("사용자를 성공적으로 제거했습니다.");
+                            if (!userList[0].isRenting)
+                            {
+                                if (DatabaseManager.DeleteUser(userList[0].userID))
+                                    Console.WriteLine("사용자를 성공적으로 제거했습니다.");
+                                else
+                                    Console.WriteLine("사용자를 제거할 수 없었습니다.");
+                            }
                             else
-                                Console.WriteLine("사용자를 제거할 수 없었습니다.");
+                                Console.WriteLine("타임머신을 대여중인 사용자는 삭제할 수 없습니다.");
                         }
                         else if (confirmDel.ToLower().Equals("n")) 
                         {
@@ -970,8 +1157,8 @@ namespace SharingTm
                 // 검색 결과가 여러 명일 경우 ID로 특정하여 삭제
                 else
                 {
-                    bool selectedUserIdExists_1 = false;
-                    while (!selectedUserIdExists_1)
+                    bool selectedUserIdExists = false;
+                    while (!selectedUserIdExists)
                     {
                         Console.Write("제거할 사용자의 ID를 입력해주세요.(0으로 돌아가기) : ");
                         
@@ -981,14 +1168,20 @@ namespace SharingTm
                         }
 
                         if (delUserID == 0)
-                            selectedUserIdExists_1 = true;
-                        else if (userList.Any(user => user.userID == delUserID))
+                            selectedUserIdExists = true;
+                        User targetUser = userList.FirstOrDefault(user => user.userID == delUserID);
+                        if (targetUser != null)
                         {
-                            selectedUserIdExists_1 = true;
-                            if (DatabaseManager.DeleteUser(delUserID))
-                                Console.WriteLine("사용자를 성공적으로 제거했습니다.");
+                            if (targetUser.isRenting)
+                                Console.WriteLine("타임머신을 대여중인 사용자는 삭제할 수 없습니다.");
                             else
-                                Console.WriteLine("사용자를 제거할 수 없었습니다.");
+                            {
+                                selectedUserIdExists = true;
+                                if (DatabaseManager.DeleteUser(delUserID))
+                                    Console.WriteLine("사용자를 성공적으로 제거했습니다.");
+                                else
+                                    Console.WriteLine("사용자를 제거할 수 없었습니다.");
+                            }
                         }
                         else
                             Console.WriteLine("해당하는 ID의 사용자가 없습니다.");
@@ -1307,7 +1500,7 @@ namespace SharingTm
         private static void PrintStationList(List<Station> stationList)
         {
             Console.WriteLine("\n------------------------------------------------------------------------------------------");
-            Console.WriteLine(" ID    대여소 이름           보관 타임머신  대여소 주소");
+            Console.WriteLine(" ID    대여소 이름       보관 타임머신  대여소 주소");
             Console.WriteLine("------------------------------------------------------------------------------------------");
             foreach (Station station in stationList)
             {
@@ -1539,6 +1732,15 @@ namespace SharingTm
                 Console.WriteLine("조회할 이용권 구매내역이 없습니다.");
         }
 
+        private static void AdminViewRental()
+        {
+            List<Rental> rentalList = DatabaseManager.GetRentalHistory();
+            if (rentalList.Count > 0)
+                PrintRentalHistory(rentalList);
+            else
+                Console.WriteLine("조회할 대여내역이 없습니다.");
+        }
+
         private static void PrintTimeMachineList(List<TimeMachine> timeMachineList)
         {
             Console.WriteLine("\n----------------------------------------------------------------------");
@@ -1579,6 +1781,49 @@ namespace SharingTm
                 );
             }
             Console.WriteLine("---------------------------------------------------------------------------------------\n");
+        }
+
+        private static void PrintRentalHistory(List<Rental> rentalList)
+        {
+            Console.WriteLine("\n-----------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine(" ID     사용자 이름    출발 대여소       대여 일시            도착 대여소       반납 일시            이동 시간대");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+
+            foreach (Rental rental in rentalList)
+            {
+                // 날짜 포맷 (yyyy/MM/dd HH:mm)
+                string rTime = rental.rentalTime.ToString("yyyy/MM/dd HH:mm");
+
+                // 반납 시간 처리: DateTime.MinValue면 아직 반납 안 한 상태
+                string rtTime = (rental.returnTime == DateTime.MinValue)
+                                ? "-"
+                                : rental.returnTime.ToString("yyyy/MM/dd HH:mm");
+
+                // 도착 대여소 처리
+                string arrStation = string.IsNullOrEmpty(rental.arriveStationName)
+                                    ? "-"
+                                    : rental.arriveStationName;
+
+
+                Console.WriteLine(" {0,-4}   {1,-10}   {2,-13}   {3,-16}   {4,-13}   {5,-16}   {6}",
+                    rental.rentalID,
+                    CutString(rental.userName, 10), 
+                    CutString(rental.departStationName, 13),
+                    rTime,
+                    CutString(arrStation, 13),
+                    rtTime,
+                    rental.destinationPoint
+                );
+            }
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
+        }
+
+        private static string CutString(string text, int maxLength)
+        {
+            if (string.IsNullOrEmpty(text)) return "-";
+            if (text.Length > maxLength)
+                return text.Substring(0, maxLength - 2) + "..";
+            return text;
         }
     }
 }
