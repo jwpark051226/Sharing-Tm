@@ -124,6 +124,47 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
 
+-- 샘플 데이터 삽입
+START TRANSACTION;
+INSERT INTO RentalStation(rsid, rs_name, rs_address) VALUES
+(1, '한국공학대학교', '경기도 시흥시 정왕동'),
+(2, '정왕역', '경기도 시흥시 정왕동'),
+(3, '경기과학기술대학교', '경기도 시흥시 정왕동'),
+(4, '사당역', '서울특별시 동작구 사당동'),
+(5, '잠실역', '서울특별시 송파구 신천동'),
+(6, '시흥시청', '경기도 시흥시 장현동'),
+(7, '코엑스', '서울특별시 강남구 삼성동');
+
+INSERT INTO TimeMachine(model, rsid) VALUES
+('past', 1),
+('past', 3),
+('past', 2),
+('past', 5),
+('past', 7),
+('past', 5),
+('past', 3),
+('future', 3),
+('future', 6),
+('future', 7),
+('future', 1),
+('future', 4),
+('future', 2),
+('past', 4),
+('past', 6),
+('future', 5),
+('past', 3),
+('past', 2),
+('future', 1),
+('past', 7),
+('past', 6),
+('future', 4),
+('future', 3),
+('future', 2);
+COMMIT;
+
+-- 확인용
+SELECT * FROM RentalStation;
+SELECT * FROM TimeMachine;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
