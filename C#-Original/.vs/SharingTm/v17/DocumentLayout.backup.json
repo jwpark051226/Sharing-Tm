@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\model\\timemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:model\\timemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\model\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:model\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|c:\\users\\yocre\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\sharing-tm-master\\c#-original\\model\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:model\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|c:\\users\\yocre\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\sharing-tm-master\\c#-original\\model\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:model\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|c:\\users\\yocre\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\sharing-tm-master\\c#-original\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98F8909C-852C-4C69-B406-B6ED5CE6122F}|SharingTm.csproj|solutionrelative:databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Rental.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\Rental.cs",
+              "RelativeDocumentMoniker": "Model\\Rental.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\Rental.cs",
+              "RelativeToolTip": "Model\\Rental.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T17:25:39.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Ticket.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\Ticket.cs",
+              "RelativeDocumentMoniker": "Model\\Ticket.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\Ticket.cs",
+              "RelativeToolTip": "Model\\Ticket.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T15:02:46.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\User.cs",
+              "RelativeDocumentMoniker": "Model\\User.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\User.cs",
+              "RelativeToolTip": "Model\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:31:51.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DatabaseManager.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\DatabaseManager.cs",
+              "RelativeDocumentMoniker": "DatabaseManager.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\DatabaseManager.cs",
+              "RelativeToolTip": "DatabaseManager.cs",
+              "ViewState": "AgIAAI4CAAAAAAAAAAAswKYCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T03:12:35.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Station.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\Station.cs",
+              "RelativeDocumentMoniker": "Model\\Station.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\Station.cs",
+              "RelativeToolTip": "Model\\Station.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T07:09:26.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TimeMachine.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\TimeMachine.cs",
+              "RelativeDocumentMoniker": "Model\\TimeMachine.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Model\\TimeMachine.cs",
+              "RelativeToolTip": "Model\\TimeMachine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T07:09:08.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\yocre\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\asdf\\\uC218\uC5C5\uC790\uB8CC\\\uB370\uC774\uD130\uBCA0\uC774\uC2A4\\\uD300\uD504\uB85C\uC81D\uD2B8\\Sharing-Tm-master\\C#-Original\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAJAEAAAAAAAAAAAAAMgEAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T07:08:47.629Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
