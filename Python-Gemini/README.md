@@ -25,7 +25,7 @@ Python-Gemini/
 │   ├── station_service.py  # 대여소 비즈니스 로직
 │   ├── tm_service.py       # 타임머신 비즈니스 로직
 │   └── rental_service.py   # 대여/반납 비지니스 로직
-│   └── ticket_service.py   # 이용권 비지니스 로
+│   └── ticket_service.py   # 이용권 비지니스 로직
 ├── utils/
 │   ├── __init__.py
 │   └── ui_utils.py         # UI 유틸리티 함수
